@@ -2,7 +2,7 @@ const express = require("express");
 const mo = require("method-override");
 const bodyPaserser = require("body-parser");
 
-var PORT = env.PORT || 3000;
+var PORT = process.env.PORT || 3000;
 
 var app = express();
 
@@ -13,7 +13,7 @@ app.use(bodyPaserser.urlencoded({extended:false}));
 // parse application/json
 app.use(bodyPaserser.json());
 // parse text
-app.use(bodyPaserser.text());
+// app.use(bodyPaserser.text());
 
 // set handlebars
 var exphbs = require('express-handlebars');
