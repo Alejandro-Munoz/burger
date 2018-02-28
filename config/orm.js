@@ -1,17 +1,18 @@
 const connection = require('./connection.js');
 
 var orm = {
-    selectAll: function(table){
+    selectAll: function(table, cb){
         var queryString = 'SELECT * FROM ?? ';
         
         connection.query(queryString,table,function(err, results){
-            console.log(results);
+            // console.log(results);
+            cb(results)
         })
     },
-    insertOne: function(obj){
-        var queryString = 'INSERT INTO burgers SET ? ';
+    insertOne: function(table, objBurger){
+        var queryString = 'INSERT INTO ?? SET ? ';
 
-        connection.query(queryString,[obj],
+        connection.query(queryString,[table,objBurger],
             function(err, results){
             if(err){
                 console.log(err);
@@ -20,8 +21,8 @@ var orm = {
             console.log('ok',results);
         })
     },
-    updateOne: function(colVals,condition){
-        var queryString = "UPDATE burgers SET ? WHERE ?";
+    updateOne: function(table, colVals,condition){
+        var queryString = "UPDATE ?? SET ? WHERE ?";
 
         // queryString += " SET ";
         // // queryString += objToSql(objColVals);
@@ -31,7 +32,7 @@ var orm = {
         // queryString += condition;
 
         console.log(queryString);
-        connection.query(queryString,[colVals,condition], function(err, result) {
+        connection.query(queryString,[table, colVals,condition], function(err, result) {
         if (err) {
             throw err;
         }
@@ -42,6 +43,6 @@ var orm = {
 
 }
 // orm.selectAll('burgers');
-// orm.insertOne({burger_name:'some name',devoured:0});
-orm.updateOne({burger_name:'Bacon burger2'},{id:2})
+// orm.insertOne('burgers', {burger_name:'Blue Cheese Burger', devoured:1});
+// orm.updateOne({burger_name:'Bacon burger2'},{id:2})
 module.exports = orm;
