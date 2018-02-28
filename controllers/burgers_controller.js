@@ -5,8 +5,12 @@ var router = express.Router();
 
 router.get('/all', function(req, res){
     console.log('get route');
-    burger.selectAll(function(res){
-        console.log(res);
+    burger.selectAll(function(data){
+        var hbsObject = {
+            burgers: data
+          };
+          console.log(hbsObject);
+          res.render("index", hbsObject);
     })
 })
 
