@@ -21,14 +21,8 @@ $(function(){
         );
       });
 
-    // $(".create-update-form").on('click',function(e){
-    //     e.preventDefault;
-    //     console.log($(this).data('id'));
-    // });
-    $(".create-update-form").on("click", function(event) {
+    $(".btn.btn-success").on("click", function(event) {
         var id = $(this).data("id");
-        // var newSleep = $(this).data("newsleep");
-    
         var newDevouredState = {
           devoured: 1
         };
